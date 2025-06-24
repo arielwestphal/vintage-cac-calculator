@@ -53,4 +53,5 @@ st.metric("Total Monthly Revenue", f"${total_monthly_revenue:,.2f}")
 st.metric("Avg Monthly Revenue per Customer", f"${avg_monthly_revenue_per_customer:,.2f}")
 st.metric("Avg Revenue After CAC", f"${avg_revenue_after_cac:,.2f}")
 
-updated default values for originated and drawn to $10M
+# updated default values for originated and drawn to $10M
+
