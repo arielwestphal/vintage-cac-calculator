@@ -11,6 +11,7 @@ marketing_spend = st.number_input("Marketing Spend ($)", min_value=0.0, value=15
 total_originated_dollars = st.number_input("Total Originated Dollars ($)", min_value=0.0, value=10000000.0)
 total_dollars_drawn = st.number_input("Total Dollars Drawn ($)", min_value=0.0, max_value=total_originated_dollars, value=min(10000000.0, total_originated_dollars))
 apr = st.number_input("APR (as a whole number, e.g. 24 for 24%)", min_value=0.0, max_value=1000.0, value=24.0)
+day_of_month = st.number_input("Day of the Month", min_value=1, max_value=31, value=15)
 
 # Prevent division by zero
 safe_approvals = approvals if approvals > 0 else 1
@@ -39,6 +40,9 @@ avg_monthly_revenue_per_customer = total_monthly_revenue / safe_conversions
 avg_daily_revenue_per_customer = total_daily_revenue / safe_conversions
 avg_revenue_after_cac = avg_monthly_revenue_per_customer - cost_per_conversion
 
+total_revenue_to_date = total_daily_revenue * day_of_month
+avg_revenue_to_date_per_customer = total_revenue_to_date / safe_conversions
+
 # Output Results
 st.header("Calculated Metrics")
 st.metric("Approval Rate", f"{approval_rate:.2%}")
@@ -57,4 +61,6 @@ st.metric("Total Monthly Revenue", f"${total_monthly_revenue:,.2f}")
 st.metric("Avg Monthly Revenue per Customer", f"${avg_monthly_revenue_per_customer:,.2f}")
 st.metric("Total Daily Revenue", f"${total_daily_revenue:,.2f}")
 st.metric("Avg Daily Revenue per Customer", f"${avg_daily_revenue_per_customer:,.2f}")
+st.metric("Total Revenue to Date (Day {day_of_month})", f"${total_revenue_to_date:,.2f}")
+st.metric("Avg Revenue to Date per Customer", f"${avg_revenue_to_date_per_customer:,.2f}")
 st.metric("Avg Revenue After CAC", f"${avg_revenue_after_cac:,.2f}")
