@@ -40,8 +40,12 @@ avg_monthly_revenue_per_customer = total_monthly_revenue / safe_conversions
 avg_daily_revenue_per_customer = total_daily_revenue / safe_conversions
 avg_revenue_after_cac = avg_monthly_revenue_per_customer - cost_per_conversion
 
-total_revenue_to_date = total_daily_revenue * day_of_month
-avg_revenue_to_date_per_customer = total_revenue_to_date / safe_conversions
+# Assume conversions happen evenly over the month
+# Average customer earns interest for (day_of_month - 0.5) days
+average_days_accrued = day_of_month - 0.5
+avg_interest_accrued = avg_dollars_drawn * daily_rate * average_days_accrued
+total_revenue_to_date = avg_interest_accrued * safe_conversions
+avg_revenue_to_date_per_customer = avg_interest_accrued
 
 # Output Results
 st.header("Calculated Metrics")
@@ -61,6 +65,6 @@ st.metric("Total Monthly Revenue", f"${total_monthly_revenue:,.2f}")
 st.metric("Avg Monthly Revenue per Customer", f"${avg_monthly_revenue_per_customer:,.2f}")
 st.metric("Total Daily Revenue", f"${total_daily_revenue:,.2f}")
 st.metric("Avg Daily Revenue per Customer", f"${avg_daily_revenue_per_customer:,.2f}")
-st.metric("Total Revenue to Date (Day {day_of_month})", f"${total_revenue_to_date:,.2f}")
+st.metric(f"Total Revenue to Date (Day {day_of_month})", f"${total_revenue_to_date:,.2f}")
 st.metric("Avg Revenue to Date per Customer", f"${avg_revenue_to_date_per_customer:,.2f}")
 st.metric("Avg Revenue After CAC", f"${avg_revenue_after_cac:,.2f}")
