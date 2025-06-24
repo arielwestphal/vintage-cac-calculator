@@ -32,8 +32,11 @@ avg_origination_amount = total_originated_dollars / safe_conversions
 avg_dollars_drawn = total_dollars_drawn / safe_conversions
 
 monthly_rate = apr / 100 / 12
+daily_rate = apr / 100 / 365
 total_monthly_revenue = total_dollars_drawn * monthly_rate
+total_daily_revenue = total_dollars_drawn * daily_rate
 avg_monthly_revenue_per_customer = total_monthly_revenue / safe_conversions
+avg_daily_revenue_per_customer = total_daily_revenue / safe_conversions
 avg_revenue_after_cac = avg_monthly_revenue_per_customer - cost_per_conversion
 
 # Output Results
@@ -52,9 +55,6 @@ st.metric("Avg Dollars Drawn", f"${avg_dollars_drawn:,.2f}")
 
 st.metric("Total Monthly Revenue", f"${total_monthly_revenue:,.2f}")
 st.metric("Avg Monthly Revenue per Customer", f"${avg_monthly_revenue_per_customer:,.2f}")
+st.metric("Total Daily Revenue", f"${total_daily_revenue:,.2f}")
+st.metric("Avg Daily Revenue per Customer", f"${avg_daily_revenue_per_customer:,.2f}")
 st.metric("Avg Revenue After CAC", f"${avg_revenue_after_cac:,.2f}")
-
-
-
-# updated default values for originated and drawn to $10M and increased APR field and changed APR to whole number
-
