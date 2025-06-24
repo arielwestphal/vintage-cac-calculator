@@ -8,8 +8,8 @@ approvals = st.number_input("Number of Approvals", min_value=1, max_value=applic
 conversions = st.number_input("Number of Conversions", min_value=1, max_value=approvals, value=200)
 uw_data_cost = st.number_input("Underwriting Data Cost ($)", min_value=0.0, value=5000.0)
 marketing_spend = st.number_input("Marketing Spend ($)", min_value=0.0, value=15000.0)
-total_originated_dollars = st.number_input("Total Originated Dollars ($)", min_value=0.0, value=300000.0)
-total_dollars_drawn = st.number_input("Total Dollars Drawn ($)", min_value=0.0, max_value=total_originated_dollars, value=240000.0)
+total_originated_dollars = st.number_input("Total Originated Dollars ($)", min_value=0.0, value=10000000.0)
+total_dollars_drawn = st.number_input("Total Dollars Drawn ($)", min_value=0.0, max_value=total_originated_dollars, value=min(10000000.0, total_originated_dollars))
 apr = st.number_input("APR (as decimal, e.g. 0.24 for 24%)", min_value=0.0, max_value=1.0, value=0.24)
 
 # Prevent division by zero
@@ -52,3 +52,5 @@ st.metric("Avg Dollars Drawn", f"${avg_dollars_drawn:,.2f}")
 st.metric("Total Monthly Revenue", f"${total_monthly_revenue:,.2f}")
 st.metric("Avg Monthly Revenue per Customer", f"${avg_monthly_revenue_per_customer:,.2f}")
 st.metric("Avg Revenue After CAC", f"${avg_revenue_after_cac:,.2f}")
+
+updated default values for originated and drawn to $10M
